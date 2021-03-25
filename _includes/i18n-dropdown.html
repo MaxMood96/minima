@@ -1,0 +1,37 @@
+<!-- Very very very basic i18n dropdown for mvp -->
+
+<style>
+  #i18n-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  #i18n-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #e7e7e7;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+  }
+
+  #i18n-dropdown:hover #i18n-dropdown-content {
+    display: block;
+  }
+
+  #i18n-dropdown-button {
+    border: #e7e7e7 3px;
+    cursor: pointer;
+  }
+</style>
+
+<div id="i18n-dropdown">
+  <button id="i18n-dropdown-button">Language 🌐</button>
+  <div id="i18n-dropdown-content">
+    <a href="/">English</a>
+    {% for language in site.languages %}
+      <a href="/index.{{ language.code }}">{{ language.name | escape }}</a>
+    {% endfor %}
+  </div>
+</div>
