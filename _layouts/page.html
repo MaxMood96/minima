@@ -7,7 +7,11 @@ layout: default
     <h1 class="post-title">{{ page.title | escape }}</h1>
   </header>
 
+  {%- if page.lang == 'fa' -%}  
+  <div class="post-content" dir="rtl">
+  {%- else -%}
   <div class="post-content">
+  {%- endif -%}
     {{ content }}
   </div>
 
