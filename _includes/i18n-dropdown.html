@@ -1,39 +1,63 @@
 <!-- Very very very basic i18n dropdown for mvp -->
-
 <style>
   #i18n-dropdown {
     position: relative;
-    display: inline-block;
+    line-height: 1;
+    margin: auto 0;
   }
 
   #i18n-dropdown-content {
     display: none;
     position: absolute;
+    top: 1rem;
     background-color: #e7e7e7;
     min-width: 160px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    padding: 12px 16px;
     z-index: 1;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  #i18n-dropdown:hover #i18n-dropdown-content {
+  #i18n-dropdown-content li {
+    margin: 0;
+    padding: 0;
+  }
+
+  #i18n-dropdown-content li a {
     display: block;
+    text-decoration: none;
+    padding: 1em 1.5em;
+    margin: 0;
+    line-height: 1;
+  }
+
+  #i18n-dropdown-content li a:focus, #i18n-dropdown-content li a:hover {
+    background-color: black;
+    color: white;
   }
 
   #i18n-dropdown-button {
-    border: #e7e7e7 3px;
     cursor: pointer;
+    /* padding: 0.25em; */
+    border: #e7e7e7 3px;
+    text-align: center;
+    padding: 0.5em 1em;
+    border: 2px solid transparent;
+  }
+
+  #i18n-dropdown-button:focus, #i18n-dropdown-button:hover {
+    border: 2px solid black;
+    background-color: #f8f8f8;
   }
 </style>
 
 <div id="i18n-dropdown">
-  <button id="i18n-dropdown-button">Language 🌐</button>
-  <div id="i18n-dropdown-content">
-    <ul style="list-style: none;">
-      <li><a href="/">English</a></li>
-      {% for language in site.languages %}
-      <li><a href="/index.{{ language.code }}">{{ language.name | escape }}</a></li>
-      {% endfor %}
-    </ul>
-  </div>
+  <button data-enhance-a11y-menu id="i18n-dropdown-button" aria-haspopup="true" aria-expanded="false" aria-controls="i18n-dropdown-content" aria-label="Select language">Language 🌐</button>
+  <ul id="i18n-dropdown-content" role="menu" aria-labelledby="i18n-dropdown-button">
+    <li role="none"><a role="menuitem" href="/">English</a></li>
+    {% for language in site.languages %}
+    <li role="none"><a role="menuitem" href="/index.{{ language.code }}">{{ language.name | escape }}</a></li>
+    {% endfor %}
+  </ul>
 </div>
